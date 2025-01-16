@@ -99,7 +99,7 @@ export const logout = (_, res) => {
   }
 };
 
-export const updateUser = async () => {
+export const updateUser = async (req, res) => {
   try {
     const { profilePic } = req.body;
     const userId = req.user._id;
@@ -119,6 +119,18 @@ export const updateUser = async () => {
       message: "Profile pic updated successfully",
       updatedUser,
     });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const checkAuth = async (req, res) => {
+  try {
+    res.status(200).json({
+      success: true,
+      message: "User authenticated successfully",
+      user: req.user,
+    })
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
