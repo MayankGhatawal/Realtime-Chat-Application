@@ -8,8 +8,6 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT;
 
-connectDB();
-
 app.use("/api/auth", authRoutes);
 app.get('/', (req, res) => {
   res.send('Hello, World!');
@@ -17,4 +15,5 @@ app.get('/', (req, res) => {
 
 app.listen(port, ()=>{
     console.log(`Server running at http://localhost:${port}`);
+    connectDB();
 });

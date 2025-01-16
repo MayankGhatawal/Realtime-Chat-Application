@@ -1,10 +1,10 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-export const Register = async (req, res) => {
+export const signup = async (req, res) => {
     try {
-      const { fullName, email, password } = req.body;
-      if (!fullName || !email || !password) {
+      const { email, fullName, password, profilePic } = req.body;
+      if (!fullName || !email || !password || !profilePic) {
         return res.status(400).json({
           success: false,
           message: "Please provide all fields",
@@ -24,6 +24,7 @@ export const Register = async (req, res) => {
         fullName,
         email,
         password: hashedPassword,
+        profilePic,
       });
       return res.status(201).json({
         success: true,

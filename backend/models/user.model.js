@@ -1,22 +1,26 @@
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema({
-  fullName: {
-    type: String,
-    required: [true, "Please provide a Full Name!"],
-    unique: false,
+const userSchema = new mongoose.Schema(
+  {
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    fullName: {
+      type: String,
+      required: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    profilePic: {
+      type: String,
+      default: "https://cdn-icons-png.flaticon.com/512/8847/8847419.png",
+    },
   },
-  email: {
-    type: String,
-    required: [true, "Please provide an Email!"],
-    unique: [true, "Email Exist"],
-  },
-
-  password: {
-    type: String,
-    required: [true, "Please provide a password!"],
-    unique: false,
-  },
-});
+  { timestamps: true }
+);
 
 export const User = mongoose.model("User", userSchema);
