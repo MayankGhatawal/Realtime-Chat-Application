@@ -1,3 +1,4 @@
+import User from '../models/user.model.js';
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -8,6 +9,13 @@ export const signup = async (req, res) => {
         return res.status(400).json({
           success: false,
           message: "Please provide all fields",
+        });
+      }
+
+      if ( password < 6 ) {
+        return res.status(400).json({
+          success: false,
+          message: "Password should be at least 6 characters long",
         });
       }
   
