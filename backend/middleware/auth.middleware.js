@@ -19,6 +19,9 @@ export const protectRoutes = async (req, res, next) => {
         if (!user) {
             return res.status(401).json({ message: 'Access Denied' });
         }
+
+        req.user = user;
+        next();
     } catch (error) {
         res.status(404).json({ error: error });
     }
