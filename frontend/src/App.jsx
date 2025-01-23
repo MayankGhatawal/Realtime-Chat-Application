@@ -6,8 +6,18 @@ import Setting from "./pages/Setting";
 import Profile from "./pages/profileInfo";
 import NotFound from "./pages/notFound";
 import Navbar from "./components/navbar";
+import { useAuthStore } from "./store/useAuthStore.js";
+import { useEffect } from "react";
 
 function App() {
+  const { authUser, checkAuth } = useAuthStore()
+
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
+
+  console.log({authUser});
+  
   return (
     <>
     <Navbar />
